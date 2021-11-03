@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #list {
+          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        #list td, #list th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+
+        #list tr:nth-child(even){background-color: #f2f2f2;}
+        #list tr:nth-child(odd){background-color: #bfddf1;}    
+
+        #list th {
+
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: center;
+          background-color: #ff0000;
+          color: white;
+        }
+    </style>
+</head>
+
+<body onload="initlist()">
+
+<h1 style ="text-align: center; color: red; font-family: 'Titillium';">
+    Payroll System</h1>
+
+
+
+<p style = "text-align: center; font-family: 'Titillium';">
+
+<label for = "employee">Name:</label>
+<input type = "texbox" id = "employeename" name = "employee">
+
+<label for="daysworked">Days Worked:</label>
+<input id="dw" name="faysworked" type="number"></input>
+
+<label for="dailyrate">Daily Rate:</label>
+<input id="rate" name="dailyrate" type="number"></input>
+
+<label for = "deduct">Deductions: </label>
+<input type = "number" min= "0" name = "deduct" id= "deduction">
+
+<button onclick="addtolist()">Submit</button>
+
+</p>
+
+<p style = "text-align: center; font-family: 'Titillium';">
+
+<label for="items">List Items:</label>
+<input id="items" name="items" type="number" readonly></input>
+<button onclick="clearlist()">Clear list</button>
+
+
+<label for="delitem">Delete Item:</label>
+<input id="delitem" name="delitem" type="number" ></input>
+<button onclick="deleteitem()" >Delete</button>  
+
+</p>
+
+
+<p id="list"></p>
+
+<script>
+
+    function initlist(){
+        list=[];
+        document.getElementById("items").value=list.length;
+        document.getElementById("list").innerHTML="Items:";
+
+    }
+
+
+    function clearlist(){
+        var reset;
+        reset=confirm("Delete all item(s) from list ?");
+
+        if (reset) {
+             initlist();
+        }
+    }
+
+
+    function addtolist(){
+
+         var listitem = {
+             "item": "1",
+             "rate": 0,
+             "dw": 1,
+             "deduce":0,
+            "itemamount" : function itemamount(){
+                 return Math.round(this.rate*this.dw*100)/100;  
+               },
+            "finalpay" : function netPay(){
+                 return Math.round(this.rate*this.dw)-this.deduce;  
+               }
+            };
+          listitem.item=document.getElementById("employeename").value;
+          listitem.dw=document.getElementById("dw").value;
+          listitem.rate=document.getElementById("rate").value;
+          listitem.deduce=document.getElementById("deduction").value;
+
+          console.log(listitem.item);
+          console.log(listitem.dw);
+          console.log(listitem.rate);
+          console.log(listitem.deduction);
+
+          list.push(listitem);
+
+          console.log(list.length);
+          document.getElementById("items").value=list.length;
+          showlist();
+
+    }
+    
+    function deleteitem(){
+
+        var todelete;
+        var itemno;
+        itemno=document.getElementById("delitem").value;
+        todelete=confirm("Delete item no. "+itemno+"?");
+
+        if (todelete) {
+            list.splice(itemno-1,1);
+             document.getElementById("items").value=list.length;
+             showlist();   
+        }
+    }
+
+    function showlist(){
+
+        var i,l,listtext,ln;
+        var theader,tbody,tb;
+
+
+        theader ="<thead>";
+        theader+="<tr>";
+        theader+="<th>No.</th>";
+        theader+='<th style="text-align:left" >Employee Name</th>';
+        theader+="<th>Days Worked</th>";
+        theader+='<th style="text-align:right">Daily Rate</th>';
+        theader+="<th>Gross Pay</th>";
+        theader+="<th>Deduction Amount</th>";
+        theader+="<th>Net Pay</th>";
+
+        l = list.length;
+
+        for (i=0,carttext="",tbody='';i<l;i++){
+            ln=i+1;    
+            tbody += "<tr>"
+                +'<td>'+ln+' </td>'
+                +'<td>'+list[i].item+' </td>'
+                +'<td style="text-align:center">'+list[i].dw+'</td>'
+                +'<td style="text-align:center">₱'+list[i].rate+'</td>'
+                +'<td style="text-align:center">₱'+list[i].itemamount()+'</td>'   
+                +'<td style="text-align:center">₱'+list[i].deduce+'</td>' 
+                +'<td style="text-align:center">₱'+list[i].finalpay()+'</td>' 
+                +"</tr>";
+        }
+       console.log(theader+tbody);
+        document.getElementById("list").innerHTML=
+           '<table>'+theader+tbody+'</table>';
+    }
+    
+var list = []; 
+</script>
+</body>
+</html>

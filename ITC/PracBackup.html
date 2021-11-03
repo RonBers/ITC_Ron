@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta name="viewport" content="width=device-width, "> <!--initial-scale=1-->
+<style>
+* {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style tab links */
+.tablink {
+  background-color: #555;
+  color: white;
+  font-family: 'Titillium';
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 20px 200px;
+  font-size: 25px;
+  width: 30%;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  color: white;
+  display: none;
+  padding: 100px 50px;
+  height: 100%;
+}
+
+#Home {background-color: white;}
+#Assignments {background-color: maroon;}
+#About {background-image: url('AboutBackground.png')}
+</style>
+</head>
+<body>
+
+<button class="tablink" onclick="openPage('Home', this, 'black')" id="defaultOpen">Home</button>
+<button class="tablink" onclick="openPage('Assignments', this, 'red')" >Assignments</button>
+<button class="tablink" onclick="openPage('About', this, 'orange')">About</button>
+
+<div id="Home" class="tabcontent">
+  <h3>Home</h3>
+  <p style = "color: black;">Home is where the heart is..</p>
+</div>
+
+<div id="Assignments" class="tabcontent">
+  <h3>Assignments</h3>
+  <p>Some assignments this fine day!</p> 
+  <select name = "assignments" id = "selectAssignment" style = "color:red" onchange = "clickbtn (this.value)">
+    <option value = "" style = "font-family: 'Titillium'">Select Assignment...</a></option>
+    <option value = "Assignments/addition.html" style = "font-family: 'Titillium'">Add Two Numbers(Not Included)</a></option>
+    <option value = "Assignments/Conversion.html"style = "font-family: 'Titillium'">Conversion</option>
+    <option value = "Assignments/IncomeTax.html"style = "font-family: 'Titillium'">Income Tax</option>
+    <option value = "Assignments/Factorial.html"style = "font-family: 'Titillium'">Factorial, Sum, and Average</option>
+    <option value = "Assignments/Payroll.html"style = "font-family: 'Titillium'">Payroll</option>
+</select>
+
+<a href = '' id = 'View' target = "_self"><button>View</button></a>
+
+ <button><a href='calculator.html' alt='Assignment 1 link' style= "text-decoration:none;font-family: 'Titillium'" target = "_self">Sample Calculator</a></button>
+</div>
+
+<div id="About" class="tabcontent">
+  <h3>About</h3>
+  <p>Who we are and what we do.</p>
+</div>
+
+<script>
+function openPage(pageName,elmnt,color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+  elmnt.style.backgroundColor = color;
+}
+
+document.getElementById("defaultOpen").click();
+
+window.onload = function() {
+            var oDDL = document.getElementById("selectAssignment");
+
+            oDDL.onchange = function updateButtons() {
+            var oLink = document.getElementById('View');    
+            oLink.href = oDDL.value;
+        };
+
+            oDDL.onchange();
+        };
+</script>
+   
+</body>
+</html> 

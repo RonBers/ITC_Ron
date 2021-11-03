@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add 2 numbers </title> 
+        <link rel="stylesheet" href="styles.css">
+    <head>
+<body>
+
+
+<h1>Add two numbers</h1>
+
+<div>
+<button onclick="clickbtn()">Enter numbers</button><br>
+
+<p style = "text-align: center; font-family: 'Titillium';"
+>Sum:<span id = "equation"></span></p>
+<input type = "text" id = "sum" placeholder = "Sum" readonly 
+style = "font-family: 'Arial'; text-align: center; margin-left: 860px;"> 
+
+
+
+
+
+
+<p>
+<button onclick="history.back()" style = "font-family: 'Titillium'; color:red; " >Home</button>
+</p>
+
+</div>
+
+
+
+<script>
+function clickbtn()
+{
+  let x='', y='',n1=0,n2=0;
+   x=prompt('Enter first number:');
+   y=prompt('Enter  second number:');
+   n1=parseInt(x);
+   n2=parseInt(y);
+   let z=n1+n2;
+   /*document.getElementById("equation").innerhtml = "Equation:+ 'n1' + ' + ' 
+    'n2' + '=';*/
+   document.getElementById("sum").value = z;
+   
+}
+
+</script>
+</body>
+</html>

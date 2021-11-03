@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Income Tax</title>
+  
+    <meta name="viewport" content="width=device-width, "> <!--initial-scale=1-->
+    <style>
+    * {box-sizing: border-box}
+
+    body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+</head>
+
+<Body>
+
+<header style = "background-color:lightcoral; text-align: center; width: 100%; height: 10%"><br>
+    <h1 style = "font-family: 'Titillium'; color:white; text-align: center;">Income Tax Calculator</h1>
+</header>
+
+
+<p style = "text-align: center;">
+<label for = "inCome" style = "font-family:'Titillium'; color:red; font-size: 20px;">Enter Taxable Income:</label><br>
+<label style="position: relative; left:20px; font-family: 'Arial'; font-size: larger;">₱</label>
+<input type = "number" name = "inCome" min ="0" id = "income" placeholder = "Income" style = "text-indent: 15px; font-size: large;"> </p>
+
+<p style = "text-align: center;">
+<input type = "button" id = convert onclick = "incomeTax (income.value)" value = "Calculate" style = "background-color: lightgreen; color:white; font-size: 20px;
+padding: 5px 50px; border: none">
+</p>
+
+<p style= "text-align: center;">
+<label for = "incometax" style = "font-family: 'Titillium'; color:red; font-size: 20px;">Income Tax:</label> <br>
+<label style="position: relative; left:20px; font-family: 'Arial'; font-size: larger;">₱</label>
+<input type = "textbox" id = "incomeTax" name = "incometax" style = "text-indent: 15px; font-size: large;" readonly> <br>
+
+
+<button style = "margin-top: 20px; background-color: lightcoral; color: white; border: none; padding: 5px 50px; font-size: 20px;" 
+onclick="document.getElementById('income').value = '';document.getElementById('incomeTax').value = ''">Clear</button> <br>
+<input type="button" value="Home" onclick="history.back()" style = "font-family: 'Titillium'; color:red; margin-top: 10px;"> </p>
+
+
+
+<script>
+    function incomeTax (valNum)
+    {
+        if (valNum <= 250000)
+        {
+            valNum = parseFloat(valNum);
+            document.getElementById("incomeTax").value = 0;
+        }
+        else if (valNum > 250000 && valNum <= 400000)
+        {
+            valNum = parseFloat(valNum);
+            let x = valNum - 250000;
+            let y = Math.round((x * .20)*100)/100;
+            document.getElementById("incomeTax").value = y;
+        }
+        else if (valNum > 400000 && valNum <= 800000)
+        {
+            valNum = parseFloat(valNum);
+            let a = valNum - 400000;
+            let b = Math.round(((a * .25) + 30000)*100)/100;
+            document.getElementById("incomeTax").value = b;
+        }
+        else if (valNum > 800000 && valNum <= 2000000)
+        {
+            valNum = parseFloat(valNum);
+            let a = valNum - 800000;
+            let b = Math.round(((a * .30) + 130000)*100)/100;
+            document.getElementById("incomeTax").value = b;
+        }
+        else if (valNum > 2000000 && valNum <= 8000000)
+        {
+            valNum = parseFloat(valNum);
+            let a = valNum - 2000000;
+            let b = Math.round(((a * .32) + 490000)*100)/100;
+            document.getElementById("incomeTax").value = b;
+        }
+        else if (valNum > 8000000)
+        {
+            valNum = parseFloat(valNum);
+            let a = valNum - 8000000;
+            let b = Math.round(((a * .35) + 2410000)*100)/100;
+            document.getElementById ("incomeTax").value = b;
+        }
+    }
+</script>
+</Body>
+</html>
+
+&#8369

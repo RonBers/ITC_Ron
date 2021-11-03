@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Factorial, Sum, and Average</title>
+
+<meta name="viewport" content="width=device-width, "> <!--initial-scale=1-->
+<style>
+* {box-sizing: border-box}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+</style>
+
+</head>
+<body>
+    <header style = "font-family: 'Titillium'; background-color: lightcoral; width: 100%; height: 10%"><br><h1 style= "text-align: center; color: white; 
+    font-weight: bold;">Nth Factorial, Sum, and Average</h1></header>
+    <br>
+
+    <div style = "text-align: center;"><br>
+    <label  style = "font-family: 'Titillium'; font-size: large;">Enter Number:</label><br>
+    <input type = "number" min = "0" id = "num" style= "font-size: 25px; text-align: center;" numberonly> <br>
+    <br><input type = "button" id = "start" onclick = "FSA(num.value); Sum(num.value); Aver(num.value)" value = "Calculate"
+    style = "margin-top: 5px; background-color: lightgreen; color: white; padding: 10px 100px; border: none; font-size: 15px; font-weight: bolder;">
+    </div><br>
+
+
+    <div style = "text-align: center;">
+    <input type = "button" id = "start" onclick="document.getElementById('num').value = ''; 
+    document.getElementById('factorial').value = '';
+    document.getElementById('Sum').value = ''
+    document.getElementById('average').value = '' " value = "Clear" style = "background-color: lightcoral; color:white;
+     padding: 10px 113px; border: none; font-size: 15px; font-weight: bolder;">
+    </div><br>
+
+    <p style = "text-align: center;">
+    <label for="facto" style = "font-family: 'Titillium'; color: red">Factorial:</label><br>
+    <input type = "textbox" id = "factorial" name = "facto" readonly style = "font-size: 20px;text-align: center;">
+    </p><br>
+
+    <p style = "text-align: center;">
+    <label for="sum" style = "font-family: 'Titillium'; color: red">Sum:</label><br>
+    <input type = "textbox" id = "Sum" name = "sum" style = "font-size: 20px; text-align: center;" readonly>
+    </p><br>
+
+    <p style = "text-align: center;">
+    <label for="aver" style = "font-family: 'Titillium'; color: red">Average:</label><br>
+    <input type = "textbox" id = "average" name = "aver" style = "font-size: 20px;text-align: center;" readonly>
+    </p><br>
+
+    <div style = "text-align: center;">
+    <input type="button" value="Home" onclick="history.back()" style = "font-family: 'Titillium'; color:red"> </div>
+
+    <script>
+        function FSA (valNum)
+        {
+            valNum = parseInt(valNum);
+            
+            let x = 1 , y = 1, z = valNum-1, control = 1;
+            while (control <= valNum)
+            {
+                 x = x * control;
+                 control++
+            }    
+            document.getElementById("factorial").value = x;
+        }
+        function Sum (valNum)
+        { 
+            valNum = parseInt(valNum);
+            let x = 0, control = 0;
+            do 
+            {
+                x = x + control;
+                control++;
+            }while (control <= valNum)
+            document.getElementById("Sum").value = x;
+        }
+
+        function Aver (valNum)
+        { 
+            valNum = parseInt(valNum);
+            let x = 0;
+    
+            for (let i = 0; i <= valNum; i++)
+            {
+                x = x + i;
+            }
+            let y = x/valNum;
+            document.getElementById("average").value = y;
+        }
+
+
+    </script>
+</body>
+</html>

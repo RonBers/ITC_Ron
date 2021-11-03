@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payroll System</title>
+    <meta name="viewport" content="width=device-width, "> <!--initial-scale=1-->
+    <style>
+    * {box-sizing: border-box}
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #list {
+          font-family: 'Arial';
+          border-collapse: collapse;
+          width: 100%;
+          margin-left: 590px;
+          margin-top: 100px;
+        }
+
+        #list td, #list th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+
+        #list tr:nth-child(even){background-color: #f2f2f2;}
+        #list tr:nth-child(odd){background-color: #ff7e7e;}    
+
+        #list th {
+
+          padding-top: 10px;
+          padding-bottom: 10px;
+          text-align: center;
+          background-color: #ff0000;
+          color: white;
+          font-family: 'Titillium';
+          font-weight: bold;
+        }
+    </style>
+</head>
+<body onload="initlist()"></body>
+
+<header style="background-color: lightcoral;"><br><h1 style ="text-align: center; color: white; font-family: 'Titillium';">
+    Payroll System</h1> </header>
+
+
+
+
+<p style = "text-align: center; font-family: 'Titillium';">
+
+<label for = "employee" style="font-size: large;">Name:</label>
+<input type = "texbox" id = "employeename" name = "employee" style="font-size: large;" textonly>
+
+<label for="daysworked" style="font-size: large;">Days Worked:</label>
+<input id="dw" name="faysworked" type="number" style="font-size: large;" numberonly>
+
+<label for="dailyrate" style="font-size: large;">Daily Rate:</label>
+<input id="rate" name="dailyrate" type="number" style="font-size: large;" numberonly>
+
+<label for = "deduct" style="font-size: large;">Deductions: </label>
+<input type = "number" min= "0" name = "deduct" id= "deduction" style="font-size: large;" numberonly>
+
+<br>
+<div style = "text-align: center;">
+<button onclick="addtolist()" style = "background-color: lightgreen;font-size: 15px;
+font-weight: bolder; color:white; padding: 5px 20px">Submit</button>
+
+<input type = "button" id = "start" onclick="document.getElementById('employeename').value = ''; 
+    document.getElementById('dw').value = '';
+    document.getElementById('rate').value = ''
+    document.getElementById('deduction').value = '' " value = "Clear" style = "background-color: lightcoral;font-size: 15px;
+    font-weight: bolder;color:white; padding: 5px 20px">
+</div>
+</p>
+
+<p style = "text-align: center; font-family: 'Titillium';">
+
+<label for="items">No. of Items:</label>
+<input id="items" name="items" type="number" readonly></input>
+<label for="delitem">Delete Item:</label>
+<input id="delitem" name="delitem" type="number" ></input>
+<button onclick="deleteitem()" >Delete</button>  
+</p>
+
+<p style = "text-align: center;"><button onclick="clearlist()" style = "background-color: rgb(177, 59, 59);font-size: 15px;
+    font-weight: bolder;color:white; padding: 5px 20px">Clear list</button></p>
+
+<div style = "text-align: center;">
+<input type="button" value="Home" onclick="history.back()" style = "font-family: 'Titillium'; color:red"> 
+</div>
+
+<p id="list"></p>
+
+<script>
+
+    function initlist(){
+        list=[];
+        document.getElementById("items").value=list.length;
+        document.getElementById("list").innerHTML="";
+
+    }
+
+
+    function clearlist(){
+        var reset;
+        reset=confirm("Delete all item(s) from list ?");
+
+        if (reset) {
+             initlist();
+        }
+    }
+
+    function addtolist(){
+
+         var listitem = {
+             "item": "1",
+             "rate": 0,
+             "dw": 1,
+             "deduce":0,
+            "itemamount" : function itemamount(){
+                 return Math.round(this.rate*this.dw*100)/100;  
+               },
+            "finalpay" : function netPay(){
+                 return Math.round(this.rate*this.dw)-this.deduce;  
+               }
+            };
+          listitem.item=document.getElementById("employeename").value;
+          listitem.dw=document.getElementById("dw").value;
+          listitem.rate=document.getElementById("rate").value;
+          listitem.deduce=document.getElementById("deduction").value;
+
+          console.log(listitem.item);
+          console.log(listitem.dw);
+          console.log(listitem.rate);
+          console.log(listitem.deduction);
+
+          list.push(listitem);
+
+          console.log(list.length);
+          document.getElementById("items").value=list.length;
+          showlist();
+
+    }
+    
+    function deleteitem(){
+
+        var todelete;
+        var itemno;
+        itemno=document.getElementById("delitem").value;
+        todelete=confirm("Delete item no. "+itemno+"?");
+
+        if (todelete) {
+            list.splice(itemno-1,1);
+             document.getElementById("items").value=list.length;
+             showlist();   
+        }
+    }
+
+    function showlist(){
+
+        var i,l,listtext,ln;
+        var theader,tbody,tb;
+
+
+        theader ="<thead>";
+        theader+="<tr>";
+        theader+="<th>No.</th>";
+        theader+='<th style="text-align:left" >Employee Name</th>';
+        theader+="<th>Days Worked</th>";
+        theader+='<th style="text-align:right">Daily Rate</th>';
+        theader+="<th>Gross Pay</th>";
+        theader+="<th>Deduction Amount</th>";
+        theader+="<th>Net Pay</th>";
+
+        l = list.length;
+
+        for (i=0,carttext="",tbody='';i<l;i++){
+            ln=i+1;    
+            tbody += "<tr>"
+                +'<td>'+ln+' </td>'
+                +'<td>'+list[i].item+' </td>'
+                +'<td style="text-align:center">'+list[i].dw+'</td>'
+                +'<td style="text-align:center">₱'+list[i].rate+'</td>'
+                +'<td style="text-align:center">₱'+list[i].itemamount()+'</td>'   
+                +'<td style="text-align:center">₱'+list[i].deduce+'</td>' 
+                +'<td style="text-align:center">₱'+list[i].finalpay()+'</td>' 
+                +"</tr>";
+        }
+       console.log(theader+tbody);
+        document.getElementById("list").innerHTML=
+           '<table>'+theader+tbody+'</table>';
+    }
+    
+var list = []; 
+</script>
+</body>
+</html>
+
+&#8369

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Spectral&display=swap" rel="stylesheet">
+
+
+<meta name="viewport" content="width=device-width, "> <!--initial-scale=1-->
+<style>
+* {box-sizing: border-box}
+
+/*height of body and the document */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style tab links */
+.tablink {
+  background-color: #555;
+  color: white;
+  font-family: 'Titillium';
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 20px 200px;
+  font-size: 25px;
+  width: 33.333%;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content */
+.tabcontent {
+  color: white;
+  display: none;
+  padding: 100px 50px;
+  height: 100%;
+}
+
+#Home {background-color: white;}
+#Assignments {background-color: maroon;}
+#About {background-image: url('AboutBackground.png')}
+
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+  .prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: red;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+  .next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.text {
+  color: #000000;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+
+</style>
+</head>
+<body>
+
+<header style= "font-family: 'Titillium'; font-size: 35px; height: 60px; text-align: center; font-weight: bold; background-color: #555; color:#f2f2f2">
+    Introduction to Computing</header>
+
+<button class="tablink" onclick="openPage('Home', this, 'black')" id="defaultOpen">Home</button>
+<button class="tablink" onclick="openPage('Assignments', this, 'red')" >Assignments</button>
+<button class="tablink" onclick="openPage('About', this, 'orange')">About</button>
+
+<div id="Home" class="tabcontent">
+  <h1 style = "font-family: 'Titillium';">Home</h1>
+  <h2 style = "color: black; text-align: center; font-family: 'Titillium';">My Empty Website...</h2><br>
+  <h2 style = "color: black; text-align: center; font-family: 'Titillium';">This is a website created for the Introductory to Computing course.</h2><br>
+  <h2 style = "color: black; text-align: center; font-family: 'Titillium';">This page contains some of my outputs for the course.</h2><br>
+
+
+  <p style = "color: black; text-align: left; font-family: 'Titillium'; ">Here's a sample calculator</p>
+  <button><a href='calculator.html' alt='Assignment 1 link' style= "text-decoration:none;font-family: 'Titillium'; color: black; text-align: left;" 
+    target = "_self">Sample Calculator</a></button>
+</div>
+
+
+<div id="Assignments" class="tabcontent">
+  <h1 style = "font-family: 'Titillium';">Assignments</h1>
+  <p>My assignments for Introduction to Computing</p> 
+  <select name = "assignments" id = "selectAssignment" style = "color:red; height: 30px; width: 600px; font-size: 15px;" onchange = "clickbtn (this.value)">
+    <option value = "" style = "font-family: 'Titillium'; ">Select Assignment...</a></option>
+    <option value = "Assignments/addition.html" style = "font-family: 'Titillium'; ">Add Two Numbers(Not Included)</a></option>
+    <option value = "Assignments/Conversion.html"style = "font-family: 'Titillium'; ">Conversion</option>
+    <option value = "Assignments/IncomeTax.html"style = "font-family: 'Titillium'; ">Income Tax</option>
+    <option value = "Assignments/Factorial.html"style = "font-family: 'Titillium'; ">Nth Factorial, Sum, and Average</option>
+    <option value = "Assignments/Payroll.html"style = "font-family: 'Titillium'; ;">Payroll</option>
+</select>
+
+<a href = '' id = 'View' target = "_self"><button style = "font-size: 20px; height: 35px; font-family: 'Titillium';">View</button></a> <br>
+
+<h2 style = "font-family: 'Titillium'; color: white; text-align: center;">Some pictures...</h2>
+
+<div class="slideshow-container">
+    <div class="mySlides fade">
+      <div class="numbertext">1 / 4</div>
+      <img src="Conv.png" style="width:100%">
+      <div class="text">Conversions</div>
+    </div>
+    <div class="mySlides fade">
+      <div class="numbertext">2 / 4</div>
+      <img src="Tax.png" style="width:100%">
+      <div class="text">Income Tax</div>
+    </div>
+    <div class="mySlides fade">
+      <div class="numbertext">3 / 4</div>
+      <img src="fsa.png" style="width:100%">
+      <div class="text">Nth Factorial, Sum, and Average</div>
+    </div>
+    <div class="mySlides fade">
+        <div class="numbertext">4 / 4</div>
+        <img src="pay.png" style="width:100%">
+        <div class="text">Payroll Assignment</div>
+      </div>
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <br>
+    <div style="text-align:center">
+      <span class="dot" onclick="currentSlide(1)"></span> 
+      <span class="dot" onclick="currentSlide(2)"></span> 
+      <span class="dot" onclick="currentSlide(3)"></span> 
+      <span class="dot" onclick="currentSlide(4)"></span>
+    </div>
+</div>
+
+<div id="About" class="tabcontent">
+  <h1 style = "text-align: left; font-family: 'Titillium';">About</h1>
+  <h2 style = "text-align: left; font-family: 'Titillium';">Ron Joshua L. Bersabal</h2>
+  <p style = "text-align: left; font-family: 'Titillium';">Email: rjlbersabal@addu.edu.ph</p>
+  <p style = "text-align: left; font-family: 'Titillium';">Phone no: 09*********</p> <br>
+
+  <button><a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' alt='Nice!' style= "text-decoration:none;font-family: 'Titillium'; color: black; text-align: left;" 
+    target = "_blank">Don't Click</a></button>
+</div>
+
+<script>
+function openPage(pageName,elmnt,color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+  elmnt.style.backgroundColor = color;
+}
+
+document.getElementById("defaultOpen").click();
+
+window.onload = function() {
+            var oDDL = document.getElementById("selectAssignment");
+
+            oDDL.onchange = function updateButtons() {
+            var oLink = document.getElementById('View');    
+            oLink.href = oDDL.value;
+        };
+
+            oDDL.onchange();
+        };
+
+//slideshow scripts
+var slideIndex = 1;
+showSlides(slideIndex);
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+</script>  
+</body>
+</html> 
